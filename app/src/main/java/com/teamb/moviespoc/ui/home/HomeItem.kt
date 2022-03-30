@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -22,6 +22,8 @@ import coil.compose.rememberAsyncImagePainter
 import com.teamb.moviespoc.R
 import com.teamb.moviespoc.domain.model.PopularMovie
 import com.teamb.moviespoc.ui.favorites.FavoriteMoviesViewModel
+import coil.compose.rememberImagePainter
+import com.teamb.moviespoc.domain.model.PopularMovie
 import com.teamb.moviespoc.ui.theme.MoviesPOCTheme
 import androidx.hilt.navigation.compose.hiltViewModel
 
