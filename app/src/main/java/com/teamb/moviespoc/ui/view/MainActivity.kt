@@ -21,11 +21,11 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        popularViewModel.onCreate()
         setContent {
             MoviesPOCTheme {
               SetUpNavGraph(navController = rememberNavController())
             }
         }
-        popularViewModel.onCreate()
     }
 }
