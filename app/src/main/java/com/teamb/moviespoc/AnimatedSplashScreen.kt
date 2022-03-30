@@ -35,7 +35,7 @@ import kotlinx.coroutines.delay
 */
 
 @Composable
-fun AnimatedSplashScreen() {
+fun AnimatedSplashScreen(onAnimationFinished: () -> Unit) {
     val context = LocalContext.current
     var startAnimation by remember { mutableStateOf(false) }
     val alphaAnim = animateFloatAsState(
@@ -47,7 +47,7 @@ fun AnimatedSplashScreen() {
     LaunchedEffect(key1 = true) {
         startAnimation = true
         delay(SPLASH_DURATION)
-        Toast.makeText(context, SPLASH_ACTION_DUMMY_MESSAGE, Toast.LENGTH_SHORT).show()
+        onAnimationFinished()
     }
     Splash(alphaAnim.value)
 }
@@ -87,5 +87,3 @@ private const val DARK_MODE = 1f
 private const val LIGHT_MODE = 0f
 private const val SPLASH_ICON_SIZE = 250
 private const val SPLASH_DURATION = 5000L
-private const val SPLASH_ACTION_DUMMY_MESSAGE =
-    "Home Screen" // TODO DELETE THIS VARIABLE WHEN AN ACTION PUT INSTEAD THE TOAST
