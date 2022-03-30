@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.teamb.moviespoc.AnimatedSplashScreen
+import com.teamb.moviespoc.ui.home.Home
 
 /*
 *NavGraph
@@ -13,10 +14,17 @@ import com.teamb.moviespoc.AnimatedSplashScreen
 */
 @Composable
 fun SetUpNavGraph(navController: NavHostController){
+    val navigationActions =  NavActions(
+        navController
+    )
+
     NavHost(navController = navController,
         startDestination = Screen.Splash.route){
         composable(route = Screen.Splash.route){
-            AnimatedSplashScreen()
+            AnimatedSplashScreen(navigationActions.navigateToHome)
+        }
+        composable(route = Screen.Home.route) {
+            Home()
         }
     }
 }
