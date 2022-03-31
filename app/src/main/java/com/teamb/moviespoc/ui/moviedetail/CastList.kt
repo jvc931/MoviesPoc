@@ -1,22 +1,19 @@
-package com.teamb.moviespoc.ui.home
+package com.teamb.moviespoc.ui.moviedetail
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import com.teamb.moviespoc.domain.model.PopularMovie
-import com.teamb.moviespoc.ui.theme.MoviesPOCTheme
-import com.teamb.moviespoc.ui.viewmodel.PopularViewModel
+import com.teamb.moviespoc.domain.model.Cast
 
 @Composable
-fun Movies(movies: List<PopularMovie>, onFavoriteClicked: () -> Unit = {}) {
+fun CastList(castList: List<Cast>) {
 
     val swipeRefreshState = rememberSwipeRefreshState(false)
 
@@ -36,18 +33,10 @@ fun Movies(movies: List<PopularMovie>, onFavoriteClicked: () -> Unit = {}) {
             )
         }
     ) {
-        LazyColumn(modifier = Modifier.padding(bottom = 60.dp)) {
-            items(movies) { movie ->
-                HomeItem(movie)
+        LazyRow(modifier = Modifier.padding(bottom = 60.dp)) {
+            items(castList) { cast ->
+                CastItem(cast)
             }
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DashBoardPreview() {
-    MoviesPOCTheme {
-        Movies(listOf())
     }
 }
