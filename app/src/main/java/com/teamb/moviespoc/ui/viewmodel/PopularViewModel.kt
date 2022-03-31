@@ -21,14 +21,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class PopularViewModel @Inject constructor(
-    private val getPopularMoviesUseCase: GetPopularMoviesUseCase,
+    getPopularMoviesUseCase: GetPopularMoviesUseCase,
     private val getMovieDetailUseCase: GetMovieDetailUseCase
 ): ViewModel(){
      //popularMovies to use livedata
      //val popularMovies : MutableState<List<PopularMovie>> = mutableStateOf(listOf())
      //popularMovies to use Flow
      val popularMovies : Flow<List<PopularMovie>> = getPopularMoviesUseCase()
-     val movie : MutableState<MovieDetail> = mutableStateOf(MovieDetail())
+     private val movie : MutableState<MovieDetail> = mutableStateOf(MovieDetail())
 
     fun onCreate(){
         //popularMovies to use livedata
