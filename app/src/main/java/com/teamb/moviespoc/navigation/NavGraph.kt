@@ -24,6 +24,7 @@ fun SetUpNavGraph(navController: NavHostController){
         startDestination = Screen.Splash.route){
         composable(route = Screen.Splash.route){
             AnimatedSplashScreen(navigationActions.navigateToWelcome)
+            AnimatedSplashScreen(navigationActions.navigateToDetailScreen)
         }
         composable(route = Screen.Home.route) {
             Home()

@@ -5,6 +5,15 @@ import androidx.navigation.NavHostController
 class NavActions(navController: NavHostController) {
 
     val navigateToHome: () -> Unit = {
+        navController.navigate(Screen.Home.route) {
+            popUpTo(0) {
+                saveState = false
+            }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
+    val navigateToDetailScreen: () -> Unit = {
         navController.navigate(Screen.DetailScreen.route) {
             popUpTo(0) {
                 saveState = false
