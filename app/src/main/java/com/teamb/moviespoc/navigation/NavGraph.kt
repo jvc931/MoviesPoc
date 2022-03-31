@@ -6,6 +6,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.teamb.moviespoc.AnimatedSplashScreen
 import com.teamb.moviespoc.ui.home.Home
+import com.teamb.moviespoc.ui.moviedetail.MovieDetail
 import com.teamb.moviespoc.ui.welcome.Authenticate
 
 /*
@@ -29,6 +30,9 @@ fun SetUpNavGraph(navController: NavHostController){
         }
         composable(route = Screen.Welcome.route) {
             Authenticate(navigationActions.navigateToHome, navigationActions.navigateToHome)
+        }
+        composable(route = Screen.DetailScreen.route){
+            MovieDetail()
         }
     }
 }
