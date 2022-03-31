@@ -4,6 +4,7 @@ package com.teamb.moviespoc.data
  */
 import com.teamb.moviespoc.data.db.MoviesDao
 import com.teamb.moviespoc.data.network.MoviesService
+import com.teamb.moviespoc.domain.model.Cast
 import com.teamb.moviespoc.domain.model.MovieDetail
 import com.teamb.moviespoc.domain.model.PopularMovie
 import com.teamb.moviespoc.domain.model.toDomain
@@ -30,6 +31,11 @@ class MoviesRepository @Inject constructor(
     fun getAllPopularResults(): Flow<List<PopularMovie>> = flow{
         val response = api.getPopularMovies()
         emit(response.map { it.toDomain()} )
+    }
+    //Function getAllPopularResults() for Flow
+    suspend fun getMovieCredits(movie_id: Int): List<Cast>{
+        val response = api.getMovieCredits(movie_id)
+        return response.map { it.toDomain()}
     }
 
     fun getSavedMovies() : Flow<List<PopularMovie>> {
