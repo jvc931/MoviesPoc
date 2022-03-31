@@ -8,6 +8,8 @@ buildscript {
         lifecycle_version = '2.4.0'
         retrofit_version = '2.9.0'
         room_version = '2.4.1'
+        nav_version = '2.4.1'
+        accompanist_version = '0.21.3-beta'
     }
     dependencies {
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
