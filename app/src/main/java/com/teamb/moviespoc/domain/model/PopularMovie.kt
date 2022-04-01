@@ -2,12 +2,18 @@ package com.teamb.moviespoc.domain.model
 /**
  * Created by Jonathan Guerrero on 3/28/22.
  */
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import com.teamb.moviespoc.data.model.PopularMovieDto
 
+@Entity
 data class PopularMovie(
     var adult: Boolean? = null,
     var backdropPath: String? = null,
+    @Ignore
     var genreIds: ArrayList<Int> = arrayListOf(),
+    @PrimaryKey
     var id: Int? = null,
     var originalLanguage: String? = null,
     var originalTitle: String? = null,
