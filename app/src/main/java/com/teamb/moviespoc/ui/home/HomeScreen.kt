@@ -9,14 +9,20 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.collectAsState
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.teamb.moviespoc.domain.model.PopularMovie
 import com.teamb.moviespoc.ui.theme.MoviesPOCTheme
 import com.teamb.moviespoc.ui.theme.Purple500
+import com.teamb.moviespoc.ui.viewmodel.PopularViewModel
 
 @Composable
-fun Home() {
+fun Home(viewModel: PopularViewModel = hiltViewModel()) {
+    val movies: List<PopularMovie> by viewModel.popularMovies.collectAsState(initial = emptyList())
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -58,7 +64,7 @@ fun Home() {
             }
         }
     ) {
-        Movies(cards = listOf(1,2,3,4,5))
+        Movies(movies)
     }
 }
 

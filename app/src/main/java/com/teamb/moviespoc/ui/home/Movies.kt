@@ -11,10 +11,11 @@ import androidx.compose.ui.unit.dp
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import com.teamb.moviespoc.domain.model.PopularMovie
 import com.teamb.moviespoc.ui.theme.MoviesPOCTheme
 
 @Composable
-fun Movies(cards: List<Int>) {
+fun Movies(movies: List<PopularMovie>) {
 
     val swipeRefreshState = rememberSwipeRefreshState(false)
 
@@ -35,8 +36,8 @@ fun Movies(cards: List<Int>) {
         }
     ) {
         LazyColumn(modifier = Modifier.padding(bottom = 60.dp)) {
-            items(cards) {
-                HomeItem()
+            items(movies) { movie ->
+                HomeItem(movie)
             }
         }
     }
