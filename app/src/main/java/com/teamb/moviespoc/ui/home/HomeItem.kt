@@ -26,7 +26,7 @@ import com.teamb.moviespoc.ui.viewmodel.PopularViewModel
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun HomeItem(homeItemClicked:(Int)-> Unit, movie: PopularMovie, viewModel: PopularViewModel = hiltViewModel()) {
+fun HomeItem(homeItemClicked:(Int)-> Unit, movie: PopularMovie) {
     Card(
         modifier = Modifier
             .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 8.dp),
