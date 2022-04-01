@@ -5,10 +5,10 @@ import com.teamb.moviespoc.domain.model.PopularMovie
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetSavedMoviesUseCase @Inject constructor(
+class SaveMoviesUseCase @Inject constructor(
     private val repository: MoviesRepository
 ) {
-    suspend operator fun invoke(): Flow<List<PopularMovie>> {
-        return repository.getSavedMovies()
+    suspend operator fun invoke(movie: PopularMovie) {
+        return repository.saveMovie(movie)
     }
 }

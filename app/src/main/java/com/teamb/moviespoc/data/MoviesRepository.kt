@@ -30,8 +30,12 @@ class MoviesRepository @Inject constructor(
         emit(response.map { it.toDomain()} )
     }
 
-    suspend fun getSavedMovies() : List<PopularMovie> {
-        return emptyList()
+    suspend fun getSavedMovies() : Flow<List<PopularMovie>> {
+        return dao.getSavedMovies()
+    }
+
+    suspend fun saveMovie(movie: PopularMovie) {
+        dao.insert(movie)
     }
 
 }

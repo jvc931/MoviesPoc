@@ -1,14 +1,14 @@
 package com.teamb.moviespoc.data.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.teamb.moviespoc.domain.model.PopularMovie
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface MoviesDao {
     /** Get favorite movies from local DB */
     @Query("Select * from PopularMovie")
-    fun getSavedMovies() : LiveData<List<PopularMovie>>
+    suspend fun getSavedMovies() : Flow<List<PopularMovie>>
 
     /**
      * Save a popular movie to database
