@@ -18,11 +18,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import com.teamb.moviespoc.domain.model.PopularMovie
 import com.teamb.moviespoc.ui.theme.MoviesPOCTheme
-import com.teamb.moviespoc.ui.viewmodel.PopularViewModel
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
