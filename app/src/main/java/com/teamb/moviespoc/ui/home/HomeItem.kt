@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -18,31 +19,31 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.compose.rememberNavController
 import coil.compose.rememberImagePainter
 import com.teamb.moviespoc.domain.model.PopularMovie
-import com.teamb.moviespoc.navigation.Screen
 import com.teamb.moviespoc.ui.theme.MoviesPOCTheme
 import com.teamb.moviespoc.ui.viewmodel.PopularViewModel
 
-
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun HomeItem(movie: PopularMovie, viewModel: PopularViewModel = hiltViewModel()) {
-    val navControler = rememberNavController()
+fun HomeItem(homeItemClicked:(Int)-> Unit, movie: PopularMovie, viewModel: PopularViewModel = hiltViewModel()) {
     Card(
         modifier = Modifier
-            .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 8.dp)
-            .clickable {
-                movie.id?.let { viewModel.getMovieDetail(it) }
-            },
+            .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 8.dp),
         elevation = 0.dp,
-        shape = RoundedCornerShape(10.dp)
+        shape = RoundedCornerShape(10.dp),
+
     ) {
         Column {
             Image(
                 modifier = Modifier
                     .height(500.dp)
                     .clip(RoundedCornerShape(10.dp))
+                    .clickable {
+                        movie.id?.let {
+                           homeItemClicked.invoke(it)
+                        }
+                    }
                     .width(440.dp)
                     .background(Color.Black),
                 contentScale = ContentScale.FillBounds,
@@ -89,8 +90,8 @@ fun HomeItem(movie: PopularMovie, viewModel: PopularViewModel = hiltViewModel())
             )
         }
     }
-
 }
+
 @Preview(showBackground = true)
 @Composable
 fun HomeItemPreview() {

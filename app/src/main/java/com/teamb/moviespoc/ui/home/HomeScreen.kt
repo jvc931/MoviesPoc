@@ -21,8 +21,7 @@ import com.teamb.moviespoc.ui.theme.Purple500
 import com.teamb.moviespoc.ui.viewmodel.PopularViewModel
 
 @Composable
-fun Home(viewModel: PopularViewModel = hiltViewModel()) {
-
+fun Home(onHomeItemClicked:(Int) ->Unit,viewModel: PopularViewModel = hiltViewModel()) {
     val movies: List<PopularMovie> by viewModel.popularMovies.collectAsState(initial = emptyList())
     Scaffold(
         floatingActionButton = {
@@ -65,7 +64,9 @@ fun Home(viewModel: PopularViewModel = hiltViewModel()) {
             }
         }
     ) {
-        Movies(movies)
+        Movies(movies,selectedItem = {
+            onHomeItemClicked(it)
+        })
     }
 }
 
@@ -73,6 +74,6 @@ fun Home(viewModel: PopularViewModel = hiltViewModel()) {
 @Composable
 fun SignUpPreview() {
     MoviesPOCTheme {
-        Home()
+        Home(onHomeItemClicked = {})
     }
 }

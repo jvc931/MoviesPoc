@@ -28,13 +28,9 @@ import coil.compose.rememberImagePainter
 import com.teamb.moviespoc.ui.theme.Purple500
 import com.teamb.moviespoc.ui.viewmodel.PopularViewModel
 
-@Preview(showBackground = true)
 @Composable
-fun MovieDetail(viewModel: PopularViewModel = hiltViewModel()) {
-
-    //viewModel.getMovieDetail(508947)
-    val movieDetail = viewModel.movie
-
+fun MovieDetail(viewModel: PopularViewModel, movieId: Int) {
+    viewModel.getMovieDetail(movieId)
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -61,7 +57,11 @@ fun MovieDetail(viewModel: PopularViewModel = hiltViewModel()) {
                 // Leading icons should typically have a high content alpha
                 CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.high) {
                     IconButton(onClick = { /* doSomething() */ }) {
-                        Icon(Icons.Filled.Home, contentDescription = "Home section", tint = Color.White)
+                        Icon(
+                            Icons.Filled.Home,
+                            contentDescription = "Home section",
+                            tint = Color.White
+                        )
                     }
                 }
                 // The actions should be at the end of the BottomAppBar. They use the default medium
@@ -78,7 +78,7 @@ fun MovieDetail(viewModel: PopularViewModel = hiltViewModel()) {
     ) {
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             Text(
-                text = movieDetail.value.title?:"", style = MaterialTheme.typography.h4,
+                text = viewModel.movie.value.title ?: "", style = MaterialTheme.typography.h4,
                 color = Color.Black,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
@@ -89,10 +89,10 @@ fun MovieDetail(viewModel: PopularViewModel = hiltViewModel()) {
                     .width(440.dp)
                     .background(Color.Black),
                 contentScale = ContentScale.FillBounds,
-                painter = rememberImagePainter(data = "https://image.tmdb.org/t/p/original/${movieDetail.value.posterPath}"),
-                contentDescription = movieDetail.value.title,
+                painter = rememberImagePainter(data = "https://image.tmdb.org/t/p/original/${viewModel.movie.value.posterPath}"),
+                contentDescription = viewModel.movie.value.title,
             )
-            val genres = movieDetail.value.genres.map { it.name }
+            val genres = viewModel.movie.value.genres.map { it.name }
 
             Text(
                 text = genres.toString() ?: "", style = MaterialTheme.typography.caption,
@@ -100,7 +100,7 @@ fun MovieDetail(viewModel: PopularViewModel = hiltViewModel()) {
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             Text(
-                text = movieDetail.value.overview ?: "",
+                text = viewModel.movie.value.overview ?: "",
                 textAlign = TextAlign.Justify,
                 maxLines = 5,
                 overflow = TextOverflow.Ellipsis,
@@ -109,7 +109,7 @@ fun MovieDetail(viewModel: PopularViewModel = hiltViewModel()) {
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             Text(
-                text = "Score: ${movieDetail.value.voteAverage}",
+                text = "Score: ${viewModel.movie.value.voteAverage}",
                 textAlign = TextAlign.Justify,
                 maxLines = 5,
                 overflow = TextOverflow.Ellipsis,
@@ -130,10 +130,3 @@ fun MovieDetail(viewModel: PopularViewModel = hiltViewModel()) {
         }
     }
 }
-
-
-
-
-
-
-
