@@ -41,8 +41,8 @@ class PopularViewModel @Inject constructor(
             movie.value = getMovieDetailUseCase(634649)
         }*/
         viewModelScope.launch(Dispatchers.IO) {
-            movie.value = getMovieDetailUseCase(508947)
-            castList.value = getMovieCastUseCase(508947)
+          //  movie.value = getMovieDetailUseCase(508947)
+         //   castList.value = getMovieCastUseCase(508947)
         }
     }
 
