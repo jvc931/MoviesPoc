@@ -21,7 +21,7 @@ import com.teamb.moviespoc.ui.theme.Purple500
 import com.teamb.moviespoc.ui.viewmodel.PopularViewModel
 
 @Composable
-fun Home(viewModel: PopularViewModel = hiltViewModel(), onAboutClicked: () -> Unit) {
+fun Home(viewModel: PopularViewModel = hiltViewModel(), onAboutClicked: () -> Unit = {}) {
     val movies: List<PopularMovie> by viewModel.popularMovies.collectAsState(initial = emptyList())
     Scaffold(
         floatingActionButton = {
@@ -72,6 +72,6 @@ fun Home(viewModel: PopularViewModel = hiltViewModel(), onAboutClicked: () -> Un
 @Composable
 fun SignUpPreview() {
     MoviesPOCTheme {
-        Home({})
+        Home(onAboutClicked = {})
     }
 }
