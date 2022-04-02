@@ -3,10 +3,7 @@ package com.teamb.moviespoc.ui.viewmodel
  * Created by Jonathan Guerrero on 3/28/22.
  */
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.teamb.moviespoc.domain.model.MovieDetail
@@ -39,8 +36,8 @@ class PopularViewModel @Inject constructor(
             }
             movie.value = getMovieDetailUseCase(634649)
         }*/
-        viewModelScope.launch(Dispatchers.IO) {
-            movie.value = getMovieDetailUseCase(634649)
-        }
+//        viewModelScope.launch(Dispatchers.IO) {
+//            movie.value = getMovieDetailUseCase(634649)
+//        }
     }
 }

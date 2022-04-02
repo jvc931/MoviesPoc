@@ -13,4 +13,20 @@ class NavActions(navController: NavHostController) {
             restoreState = true
         }
     }
+
+    val navigateToWelcome: () -> Unit = {
+        navController.navigate(Screen.Welcome.route) {
+            popUpTo(0) {
+                saveState = false
+            }
+            launchSingleTop = true
+            restoreState = true
+        }
+    }
+
+    val navigateToAbout: () -> Unit = {
+        navController.navigate(Screen.About.route) {
+            launchSingleTop = true
+        }
+    }
 }
