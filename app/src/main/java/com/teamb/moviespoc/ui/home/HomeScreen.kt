@@ -16,7 +16,7 @@ import com.teamb.moviespoc.ui.theme.MoviesPOCTheme
 import com.teamb.moviespoc.ui.theme.Purple500
 
 @Composable
-fun Home() {
+fun Home(onAboutClicked: () -> Unit) {
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -52,7 +52,7 @@ fun Home() {
 //                IconButton(onClick = { /* doSomething() */ }) {
 //                    Icon(Icons.Filled.Favorite, contentDescription = "Localized description", tint = Color.White)
 //                }
-                IconButton(onClick = { /* doSomething() */ }) {
+                IconButton(onClick = { onAboutClicked() }) {
                     Icon(Icons.Filled.Person, contentDescription = "Profile", tint = Color.White)
                 }
             }
@@ -66,6 +66,6 @@ fun Home() {
 @Composable
 fun SignUpPreview() {
     MoviesPOCTheme {
-        Home()
+        Home({})
     }
 }
