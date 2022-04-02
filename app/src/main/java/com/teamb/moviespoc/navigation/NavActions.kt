@@ -29,4 +29,10 @@ class NavActions(navController: NavHostController) {
             launchSingleTop = true
         }
     }
+
+    val navigateToFavorites: () -> Unit = {
+        navController.navigate(Screen.Favorites.route) {
+            launchSingleTop = true
+        }
+    }
 }

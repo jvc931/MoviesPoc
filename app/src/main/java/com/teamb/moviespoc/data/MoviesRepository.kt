@@ -7,8 +7,10 @@ import com.teamb.moviespoc.data.network.MoviesService
 import com.teamb.moviespoc.domain.model.MovieDetail
 import com.teamb.moviespoc.domain.model.PopularMovie
 import com.teamb.moviespoc.domain.model.toDomain
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MoviesRepository @Inject constructor(
@@ -30,7 +32,7 @@ class MoviesRepository @Inject constructor(
         emit(response.map { it.toDomain()} )
     }
 
-    suspend fun getSavedMovies() : Flow<List<PopularMovie>> {
+    fun getSavedMovies() : Flow<List<PopularMovie>> {
         return dao.getSavedMovies()
     }
 

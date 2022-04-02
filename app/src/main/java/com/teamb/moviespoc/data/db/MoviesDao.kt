@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface MoviesDao {
     /** Get favorite movies from local DB */
     @Query("Select * from PopularMovie")
-    suspend fun getSavedMovies() : Flow<List<PopularMovie>>
+    fun getSavedMovies() : Flow<List<PopularMovie>>
 
     /**
      * Save a popular movie to database

@@ -21,12 +21,12 @@ import com.teamb.moviespoc.ui.theme.Purple500
 import com.teamb.moviespoc.ui.viewmodel.PopularViewModel
 
 @Composable
-fun Home(viewModel: PopularViewModel = hiltViewModel(), onAboutClicked: () -> Unit = {}) {
+fun Home(viewModel: PopularViewModel = hiltViewModel(), onAboutClicked: () -> Unit = {}, onFavoritesClicked: () -> Unit = {}) {
     val movies: List<PopularMovie> by viewModel.popularMovies.collectAsState(initial = emptyList())
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { /* ... */ },
+                onClick = { onFavoritesClicked() },
                 backgroundColor = Purple500,
             ) {
                 Icon(

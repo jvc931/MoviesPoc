@@ -15,7 +15,7 @@ import com.teamb.moviespoc.domain.model.PopularMovie
 import com.teamb.moviespoc.ui.theme.MoviesPOCTheme
 
 @Composable
-fun Movies(movies: List<PopularMovie>) {
+fun Movies(movies: List<PopularMovie>, onFavoriteClicked: () -> Unit = {}) {
 
     val swipeRefreshState = rememberSwipeRefreshState(false)
 
