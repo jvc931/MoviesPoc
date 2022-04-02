@@ -23,4 +23,10 @@ class NavActions(navController: NavHostController) {
             restoreState = true
         }
     }
+
+    val navigateToAbout: () -> Unit = {
+        navController.navigate(Screen.About.route) {
+            launchSingleTop = true
+        }
+    }
 }

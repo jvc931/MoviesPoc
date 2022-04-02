@@ -21,7 +21,7 @@ import com.teamb.moviespoc.ui.theme.Purple500
 import com.teamb.moviespoc.ui.viewmodel.PopularViewModel
 
 @Composable
-fun Home(viewModel: PopularViewModel = hiltViewModel()) {
+fun Home(viewModel: PopularViewModel = hiltViewModel(), onAboutClicked: () -> Unit) {
     val movies: List<PopularMovie> by viewModel.popularMovies.collectAsState(initial = emptyList())
     Scaffold(
         floatingActionButton = {
@@ -58,7 +58,7 @@ fun Home(viewModel: PopularViewModel = hiltViewModel()) {
 //                IconButton(onClick = { /* doSomething() */ }) {
 //                    Icon(Icons.Filled.Favorite, contentDescription = "Localized description", tint = Color.White)
 //                }
-                IconButton(onClick = { /* doSomething() */ }) {
+                IconButton(onClick = { onAboutClicked() }) {
                     Icon(Icons.Filled.Person, contentDescription = "Profile", tint = Color.White)
                 }
             }
@@ -72,6 +72,6 @@ fun Home(viewModel: PopularViewModel = hiltViewModel()) {
 @Composable
 fun SignUpPreview() {
     MoviesPOCTheme {
-        Home()
+        Home({})
     }
 }
