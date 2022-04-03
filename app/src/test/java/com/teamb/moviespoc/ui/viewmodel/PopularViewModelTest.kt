@@ -30,8 +30,8 @@ class PopularViewModelTest{
     fun setUp(){
         //Given
         coEvery { getPopularMoviesUseCase.invoke() } returns Mocks.fakeListPopularMovies.asFlow()
-        coEvery { getMovieDetailUseCase.invoke(634649) } returns Mocks.movieDetail1
-        coEvery { getMovieCastUseCase.invoke(634649)} returns Mocks.castList
+        coEvery { getMovieDetailUseCase.invoke(Mocks.mock_movie_id) } returns Mocks.movieDetail1
+        coEvery { getMovieCastUseCase.invoke(Mocks.mock_movie_id)} returns Mocks.castList
         viewModel = PopularViewModel(getPopularMoviesUseCase,getMovieCastUseCase,getMovieDetailUseCase)
     }
     @Test
@@ -49,7 +49,7 @@ class PopularViewModelTest{
     @Test
     fun `movie details get the information from the GetMovieDetailUseCase`() = runBlocking {
         //When
-        viewModel.getMovieDetail(634649)
+        viewModel.getMovieDetail(Mocks.mock_movie_id)
         delay(100)
         //Then
         assertThat(viewModel.movie.value).isEqualTo((Mocks.movieDetail1))
@@ -57,7 +57,7 @@ class PopularViewModelTest{
     @Test
     fun `movie cast get the information from the getMovieDetailUseCase`() = runBlocking {
         //When
-        viewModel.getMovieDetail(634649)
+        viewModel.getMovieDetail(Mocks.mock_movie_id)
         delay(100)
         //Then
         assertThat(viewModel.castList.value).isNotEmpty()

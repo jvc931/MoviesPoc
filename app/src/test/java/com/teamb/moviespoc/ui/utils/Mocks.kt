@@ -5,6 +5,8 @@ import com.teamb.moviespoc.domain.model.MovieDetail
 import com.teamb.moviespoc.domain.model.PopularMovie
 
 object Mocks {
+    const val mock_movie_id = 634649
+    const val mock_movie_wrong_id = 123
     val movie1 = PopularMovie(
         originalTitle = "Movie1",
         title = "Original movie1",
