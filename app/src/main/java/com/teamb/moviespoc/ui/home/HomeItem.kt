@@ -2,31 +2,30 @@ package com.teamb.moviespoc.ui.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Favorite
-import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.teamb.moviespoc.R
 import com.teamb.moviespoc.domain.model.PopularMovie
 import com.teamb.moviespoc.ui.favorites.FavoriteMoviesViewModel
 import com.teamb.moviespoc.ui.theme.MoviesPOCTheme
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.rememberImagePainter
+import com.teamb.moviespoc.ui.viewmodel.PopularViewModel
 
 @Composable
-fun HomeItem(movie: PopularMovie, favoriteMoviesViewModel: FavoriteMoviesViewModel = hiltViewModel()) {
+fun HomeItem(homeItemClicked:(Int)-> Unit, movie: PopularMovie, favoriteMoviesViewModel: FavoriteMoviesViewModel = hiltViewModel()) {
     Card(
         modifier = Modifier
             .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 8.dp),
@@ -38,11 +37,16 @@ fun HomeItem(movie: PopularMovie, favoriteMoviesViewModel: FavoriteMoviesViewMod
                 modifier = Modifier
                     .height(500.dp)
                     .clip(RoundedCornerShape(10.dp))
+                    .clickable {
+                        movie.id?.let {
+                           homeItemClicked.invoke(it)
+                        }
+                    }
                     .width(440.dp)
                     .background(Color.Black),
-                contentScale = ContentScale.FillWidth,
-                painter = rememberAsyncImagePainter("https://image.tmdb.org/t/p/w440_and_h660_face"+movie.posterPath),
-                contentDescription = "Movie Preview",
+                contentScale = ContentScale.FillBounds,
+                painter = rememberImagePainter(data = "https://image.tmdb.org/t/p/original/${movie.posterPath}"),
+                contentDescription = movie.title,
             )
 
 //            Row(
@@ -90,6 +94,6 @@ fun HomeItem(movie: PopularMovie, favoriteMoviesViewModel: FavoriteMoviesViewMod
 @Composable
 fun HomeItemPreview() {
     MoviesPOCTheme {
-        HomeItem(PopularMovie())
+        //HomeItem(PopularMovie())
     }
 }

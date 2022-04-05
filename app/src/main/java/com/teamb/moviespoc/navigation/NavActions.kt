@@ -1,6 +1,7 @@
 package com.teamb.moviespoc.navigation
 
-import androidx.navigation.NavHostController
+import androidx.core.os.bundleOf
+import androidx.navigation.*
 
 class NavActions(navController: NavHostController) {
 
@@ -12,6 +13,9 @@ class NavActions(navController: NavHostController) {
             launchSingleTop = true
             restoreState = true
         }
+    }
+    val navigateToDetailScreen: ( movieId:Int) -> Unit = {
+        navController.navigate(Screen.DetailScreen.route.plus("/${it}") )
     }
 
     val navigateToWelcome: () -> Unit = {

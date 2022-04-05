@@ -12,6 +12,7 @@ sealed class Screen(val route: String) {
     object Welcome : Screen(route = WELCOME_ROUTE)
     object About : Screen(route = ABOUT_ROUTE)
     object Favorites : Screen(route = FAVORITES_ROUTE)
+    object DetailScreen : Screen(route = MOVIE_DETAIL)
 
     companion object{
         const val SPLASH_ROUTE = "splash_screen"
@@ -19,6 +20,7 @@ sealed class Screen(val route: String) {
         const val WELCOME_ROUTE = "welcome_screen"
         const val ABOUT_ROUTE = "about_screen"
         const val FAVORITES_ROUTE = "favorites_screen"
+        const val MOVIE_DETAIL = "movie_detail_screen"
     }
 }
 
