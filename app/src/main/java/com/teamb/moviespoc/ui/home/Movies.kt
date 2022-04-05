@@ -16,7 +16,7 @@ import com.teamb.moviespoc.ui.theme.MoviesPOCTheme
 import com.teamb.moviespoc.ui.viewmodel.PopularViewModel
 
 @Composable
-fun Movies(movies: List<PopularMovie>, onFavoriteClicked: () -> Unit = {}) {
+fun Movies(movies: List<PopularMovie>,selectedItem:(Int) -> Unit) {
 
     val swipeRefreshState = rememberSwipeRefreshState(false)
 
@@ -38,7 +38,9 @@ fun Movies(movies: List<PopularMovie>, onFavoriteClicked: () -> Unit = {}) {
     ) {
         LazyColumn(modifier = Modifier.padding(bottom = 60.dp)) {
             items(movies) { movie ->
-                HomeItem(movie)
+                movie.id?.let {
+                    HomeItem({ selectedItem(it) }, movie)
+                }
             }
         }
     }
@@ -48,6 +50,6 @@ fun Movies(movies: List<PopularMovie>, onFavoriteClicked: () -> Unit = {}) {
 @Composable
 fun DashBoardPreview() {
     MoviesPOCTheme {
-        Movies(listOf())
+        //Movies(listOf())
     }
 }

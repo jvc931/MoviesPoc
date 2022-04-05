@@ -11,6 +11,7 @@ import com.teamb.moviespoc.AnimatedSplashScreen
 import com.teamb.moviespoc.ui.about.About
 import com.teamb.moviespoc.ui.favorites.FavoritesMovies
 import com.teamb.moviespoc.ui.home.Home
+import com.teamb.moviespoc.ui.moviedetail.MovieDetail
 import com.teamb.moviespoc.ui.welcome.Authenticate
 
 /*
@@ -19,18 +20,24 @@ import com.teamb.moviespoc.ui.welcome.Authenticate
 * Creator: Leoncio Chiunti
 */
 @Composable
-fun SetUpNavGraph(navController: NavHostController){
-    val navigationActions =  NavActions(
+fun SetUpNavGraph(navController: NavHostController) {
+    val navigationActions = NavActions(
         navController
     )
 
-    NavHost(navController = navController,
-        startDestination = Screen.Splash.route){
-        composable(route = Screen.Splash.route){
+    NavHost(
+        navController = navController,
+        startDestination = Screen.Splash.route
+    ) {
+        composable(route = Screen.Splash.route) {
             AnimatedSplashScreen(navigationActions.navigateToWelcome)
         }
         composable(route = Screen.Home.route) {
-            Home(onAboutClicked = navigationActions.navigateToAbout, onFavoritesClicked = navigationActions.navigateToFavorites)
+            Home(
+                onAboutClicked = navigationActions.navigateToAbout,
+                onFavoritesClicked = navigationActions.navigateToFavorites,
+                onHomeItemClicked = navigationActions.navigateToDetailScreen
+            )
         }
         composable(route = Screen.Welcome.route) {
             Authenticate(navigationActions.navigateToHome, navigationActions.navigateToHome)
@@ -38,18 +45,20 @@ fun SetUpNavGraph(navController: NavHostController){
         composable(
             route = Screen.DetailScreen.route.plus("/{movieId}"),
             arguments = listOf(
-            navArgument("movieId") { type = NavType.IntType }
-        )
+                navArgument("movieId") { type = NavType.IntType }
+            )
         ) { backStackEntry ->
             val movieId =
                 backStackEntry.arguments?.getInt("movieId") ?: return@composable
             MovieDetail(viewModel = hiltViewModel(), movieId = movieId)
 
+        }
         composable(route = Screen.About.route) {
             About(navigationActions.navigateToHome)
         }
         composable(route = Screen.Favorites.route) {
             FavoritesMovies()
         }
+
     }
 }

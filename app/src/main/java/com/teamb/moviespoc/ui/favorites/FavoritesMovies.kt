@@ -11,5 +11,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 fun FavoritesMovies(viewModel: FavoriteMoviesViewModel = hiltViewModel()) {
     val movies: List<PopularMovie> by viewModel.savedMovies.collectAsState(initial = emptyList())
 
-    Movies(movies = movies)
+    Movies(movies,selectedItem = {
+    })
 }
