@@ -16,7 +16,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.rememberAsyncImagePainter
 import com.teamb.moviespoc.domain.model.PopularMovie
 import com.teamb.moviespoc.ui.favorites.FavoriteMoviesViewModel
 import com.teamb.moviespoc.ui.theme.MoviesPOCTheme
